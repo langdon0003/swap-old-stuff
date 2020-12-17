@@ -22,7 +22,7 @@ export default function ProductDetails() {
         <Col lg={4} md={4}>
           <Image
             style={{ borderRadius: '35px' }}
-            src='mouse.jpg'
+            src='/mouse.jpg'
             alt={product.name}
             fluid
           ></Image>
@@ -34,7 +34,7 @@ export default function ProductDetails() {
             </ListGroup.Item>
             <ListGroup.Item>
               {`Langdon được đánh giá `}
-              <Rating value='4' text={` 4/5`} color='orange' />
+              <Rating value='4.5' text={` 4/5`} />
             </ListGroup.Item>
             <ListGroup.Item>{` Nhận được 12 phản hồi từ 23 giao dịch thành công.`}</ListGroup.Item>
             <ListGroup.Item>

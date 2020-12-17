@@ -1,35 +1,20 @@
 import { Container } from 'react-bootstrap'
-import {
-  Home,
-  ProductCreate,
-  ProductDetails,
-  ProductList,
-  RequestTo,
-  UserProfile,
-  UserRegister,
-  Transaction,
-} from './index'
+import { BrowserRouter } from 'react-router-dom'
+
 import { Header, Footer } from '../components/'
-import UserLogin from './User/UserLogin'
+
+import MainSwitch from '../routes'
 
 export default function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
       <main className='mt-3'>
         <Container>
-          {/* <Home /> */}
-          {/* <ProductCreate /> */}
-          {/* <ProductList /> */}
-          {/* <ProductDetails />
-           */}
-          {/* <UserLogin /> */}
-          {/* <RequestTo /> */}
-          <Transaction />
-          {/* <ProductList /> */}
+          <MainSwitch />
         </Container>
       </main>
       <Footer />
-    </>
+    </BrowserRouter>
   )
 }

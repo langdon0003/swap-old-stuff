@@ -72,7 +72,7 @@ export default function ProductEdit() {
             </ListGroup.Item>
             <ListGroup.Item>
               {`Langdon được đánh giá `}
-              <Rating value='4' text={` 4/5`} color='orange' />
+              <Rating value='4' text={` 4/5`} />
             </ListGroup.Item>
             <ListGroup.Item>{` Nhận được 12 phản hồi từ 23 giao dịch thành công.`}</ListGroup.Item>
             <ListGroup.Item>

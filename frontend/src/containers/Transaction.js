@@ -1,14 +1,4 @@
-import {
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  InputGroup,
-  Table,
-  ButtonGroup,
-} from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Table } from 'react-bootstrap'
 import { Rating } from '../components'
 
 import { products } from '../dumpData'
@@ -39,7 +29,7 @@ export default function Transaction() {
             </ListGroup.Item>
             <ListGroup.Item>
               {`Langdon được đánh giá `}
-              <Rating value='4' text={` 4/5`} color='orange' />
+              <Rating value='4' text={` 4/5`} />
             </ListGroup.Item>
             <ListGroup.Item>{` Nhận được 12 phản hồi từ 23 giao dịch thành công.`}</ListGroup.Item>
             <ListGroup.Item>

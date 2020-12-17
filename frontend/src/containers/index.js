@@ -6,8 +6,10 @@ import ProductEdit from './Product/ProductEdit'
 import ProductList from './Product/ProductList'
 import UserRegister from './User/UserRegister'
 import UserProfile from './User/UserProfile'
+import UserLogin from './User/UserLogin'
 import RequestTo from './RequestTo'
 import Transaction from './Transaction'
+import NotFound from './NotFound'
 
 export {
   App,
@@ -20,4 +22,6 @@ export {
   UserProfile,
   RequestTo,
   Transaction,
+  NotFound,
+  UserLogin,
 }
