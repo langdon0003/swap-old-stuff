@@ -16,7 +16,7 @@ export default function Header() {
         <Container>
           <IndexLinkContainer to='/'>
             <Navbar.Brand>
-              <h5>Swap Old Stuff</h5>
+              <h4 className='mb-0'>Swap Old Stuff</h4>
             </Navbar.Brand>
           </IndexLinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -27,7 +27,7 @@ export default function Header() {
                 placeholder='tìm kiếm ...'
                 className='mr-sm-2'
               />
-              <Button variant='secondary'>
+              <Button variant='warning'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   width='16'
@@ -48,14 +48,6 @@ export default function Header() {
               </Button>
             </Form>
             <Nav className='ml-auto'>
-              <LinkContainer to='/my-requests'>
-                <Nav.Link>My Requests</Nav.Link>
-              </LinkContainer>
-
-              <LinkContainer to='/transactions '>
-                <Nav.Link>My Transactions</Nav.Link>
-              </LinkContainer>
-
               <LinkContainer to='/products/create'>
                 <Nav.Link>Create New</Nav.Link>
               </LinkContainer>
@@ -70,13 +62,15 @@ export default function Header() {
 
               <NavDropdown title='Langdon' id='basic-nav-dropdown'>
                 <LinkContainer to='/profile'>
-                  <NavDropdown.Item href='/profile'>Profile</NavDropdown.Item>
+                  <NavDropdown.Item>My Profile</NavDropdown.Item>
                 </LinkContainer>
 
                 <LinkContainer to='/products'>
-                  <NavDropdown.Item href='/product-list'>
-                    Your Products
-                  </NavDropdown.Item>
+                  <NavDropdown.Item>My Products</NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to='/my-requests'>
+                  <NavDropdown.Item>My Requests</NavDropdown.Item>
                 </LinkContainer>
 
                 <NavDropdown.Divider />

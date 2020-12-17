@@ -7,10 +7,10 @@ const product = products[0]
 export default function Transaction() {
   return (
     <>
-      <Button className='my-3' variant='secondary'>
+      <Button className='my-2' variant='warning'>
         Quay Lại
       </Button>
-      <h2 className='text-center'>GIAO DỊCH - SỐ #6GY2U3E3</h2>
+      <h2>GIAO DỊCH - SỐ #666888</h2>
 
       <h4>MÓN ĐỒ BẠN NHẬN ĐƯỢC</h4>
       <Row>
@@ -72,7 +72,7 @@ export default function Transaction() {
           </tr>
         </tbody>
       </Table>
-      <Button className='my-3' variant='warning'>
+      <Button className='my-2' variant='warning'>
         ĐỒNG Ý TRAO ĐỔI
       </Button>
     </>

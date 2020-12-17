@@ -1,12 +1,15 @@
-import { Button, Col, Container, Form, FormLabel, Row } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 
 export default function UserProfile() {
   return (
     <>
-      <Button className='mb-3'>Quay lại</Button>
+      <Button variant='warning' className='my-2'>
+        Quay lại
+      </Button>
+      <h2>THÔNG TIN TÀI KHOẢN</h2>
       <Row>
         <Col md={4}>
-          <h3>Thông Tin Đăng Nhập</h3>
+          <h3>Đăng nhập</h3>
           <Form>
             <Form.Group controlId='Email'>
               <Form.Label>Email</Form.Label>
@@ -24,7 +27,7 @@ export default function UserProfile() {
           </Form>
         </Col>
         <Col md={8}>
-          <h3>Thông tin địa chỉ</h3>
+          <h3>Địa chỉ</h3>
           <Form>
             <Form.Row>
               <Col xs={5}>

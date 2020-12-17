@@ -1,13 +1,4 @@
-import {
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  FormControl,
-  InputGroup,
-} from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Form } from 'react-bootstrap'
 import { Rating } from '../../components'
 
 import { products } from '../../dumpData'
@@ -16,16 +7,16 @@ const product = products[0]
 export default function ProductEdit() {
   return (
     <>
-      <Button className='my-3' variant='secondary'>
+      <Button className='my-2' variant='warning'>
         Quay Lại
       </Button>
       <Form>
-        <h3 class='text-center'>CHỈNH SỬA</h3>
+        <h2 class='text-center'>CHỈNH SỬA</h2>
         <Row>
           <Col lg={3} md={3}>
             <Image
               style={{ borderRadius: '35px' }}
-              src='mouse.jpg'
+              src='/mouse.jpg'
               alt={product.name}
               fluid
             ></Image>
@@ -60,7 +51,7 @@ export default function ProductEdit() {
         <Col lg={4} md={4}>
           <Image
             style={{ borderRadius: '35px' }}
-            src='mouse.jpg'
+            src='/mouse.jpg'
             alt={product.name}
             fluid
           ></Image>

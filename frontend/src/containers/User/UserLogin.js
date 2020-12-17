@@ -3,9 +3,9 @@ import { Button, Col, Form, Row } from 'react-bootstrap'
 export default function UserLogin() {
   return (
     <>
-      <Row className='justify-content-center'>
+      <Row className='justify-content-center mt-4 pt-5'>
         <Col md={4}>
-          <h3>ĐĂNG NHẬP</h3>
+          <h2>ĐĂNG NHẬP</h2>
           <Form>
             <Form.Group controlId='Email'>
               <Form.Label>Email</Form.Label>

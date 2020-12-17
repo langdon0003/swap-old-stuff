@@ -1,11 +1,11 @@
-import { Button, Col, Container, Form, FormLabel, Row } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 
 export default function UserRegister() {
   return (
     <>
-      <Row className='justify-content-center'>
+      <Row className='justify-content-center mt-4 pt-5'>
         <Col md={4}>
-          <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+          <h2>ĐĂNG KÝ</h2>
           <Form>
             <Form.Group controlId='Email'>
               <Form.Label>Email</Form.Label>
