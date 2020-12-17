@@ -1,0 +1,117 @@
+export const products = [
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    //location Object
+    location: 'TP. Ho Chi Minh',
+    image: 'image url', //user ref ObjectID
+    user: 'Langdon',
+    likes: '234',
+    //Comments Array
+    comments: '222',
+    status: 'open',
+    //requestsFrom Array
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+  {
+    _id: '1',
+    title: 'Đổi đồ đê...',
+    description:
+      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    location: 'TP. Ho Chi Minh',
+    image: 'image url',
+    user: 'Langdon',
+    likes: '234',
+    comments: '222',
+    status: 'open',
+    requests: '12',
+    requestsTo: '_id.1237gsed',
+  },
+]
