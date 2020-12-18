@@ -15,7 +15,7 @@ const product = products[0]
 export default function ProductDetails() {
   return (
     <>
-      <Button className='my-3' variant='secondary'>
+      <Button className='my-2' variant='warning'>
         Quay Lại
       </Button>
       <Row>

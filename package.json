@@ -1,0 +1,38 @@
+{
+  "name": "swap-old-stuff",
+  "version": "1.0.0",
+  "description": "Webapp network for swapping old stuff.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longpos222/swap-old-stuff.git"
+  },
+  "keywords": [
+    "swap",
+    "old",
+    "stuff"
+  ],
+  "author": "Langdon0003",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/longpos222/swap-old-stuff/issues"
+  },
+  "homepage": "https://github.com/longpos222/swap-old-stuff#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-validator": "^6.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import {
   Home,
   ProductDetails,
@@ -25,12 +25,12 @@ export default function MainSwitch() {
         <ProductList />
       </Route>
 
-      <Route path='/products/:id'>
-        <ProductDetails />
-      </Route>
-
       <Route path='/products/:id/edit'>
         <ProductEdit />
+      </Route>
+
+      <Route path='/products/:id'>
+        <ProductDetails />
       </Route>
 
       <Route path='/login' exact>

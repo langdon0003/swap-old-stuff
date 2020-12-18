@@ -1,9 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;800&display=swap');
 
 * {
-  font-family: 'Raleway', sans-serif !important;
+  font-family: 'Raleway' !important;
 }
 
-footer {
-  margin-top: 75vh;
+body,
+#root {
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+button {
+  text-transform: uppercase;
+}
+
+input {
+  border-radius: 18px !important;
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+
+.custom-bg-color-primary {
+  background-color: #375a7f;
+}
+.custom-bg-color-secondary {
+  background-color: #444;
+}
+.custom-bg-color-success {
+  background-color: #00bc8c;
+}
+.custom-bg-color-info {
+  background-color: #3498db;
+}
+.custom-bg-color-warning {
+  background-color: #f39c12;
+}
+.custom-bg-color-danger {
+  background-color: #e74c3c;
 }

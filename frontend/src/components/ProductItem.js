@@ -3,9 +3,15 @@ import { Card, Button, Badge, Row, Col } from 'react-bootstrap'
 export default function ProductItem(props) {
   return (
     <>
-      <Card className='mt-4 position-relative' style={{ borderRadius: '35px' }}>
+      <Card
+        className='product-item mb-4 position-relative'
+        style={{ borderRadius: '1.078em' }}
+      >
         <Card.Img
-          style={{ borderTopRightRadius: '35px', borderTopLeftRadius: '35px' }}
+          style={{
+            borderTopRightRadius: '1.078em',
+            borderTopLeftRadius: '1.078em',
+          }}
           variant='top'
           src='mouse.jpg'
         />
@@ -14,15 +20,16 @@ export default function ProductItem(props) {
           <Card.Title as='h5' className='my-2'>
             {props.item.title}
           </Card.Title>
+          
           <Card.Subtitle as='p' className='mb-1'>
             {props.item.user}
           </Card.Subtitle>
 
           <Row>
-            <Col md={12} lg={6}>
+            <Col sm={6} md={12} lg={6}>
               <Card.Text>{props.item.location}</Card.Text>
             </Col>
-            <Col xs={6} md={6} lg={3}>
+            <Col sm={3} xs={3} lg={3}>
               <Badge className='mt-1' variant='primary badge-pill'>
                 <Card.Text as='span'>
                   {props.item.likes}{' '}
@@ -44,7 +51,7 @@ export default function ProductItem(props) {
                 </Card.Text>
               </Badge>
             </Col>
-            <Col xs={6} md={6} lg={3}>
+            <Col sm={3} xs={3} lg={3}>
               <Badge className='my-1' variant='primary badge-pill'>
                 <Card.Text as='span'>
                   {props.item.comments}{' '}
@@ -68,17 +75,17 @@ export default function ProductItem(props) {
         </Card.Body>
         <Card.Footer
           style={{
-            borderBottomRightRadius: '35px',
-            borderBottomLeftRadius: '35px',
+            borderBottomRightRadius: '1.078em',
+            borderBottomLeftRadius: '1.078em',
           }}
         >
           <Row>
-            <Col xs={6}>
-              <Button className='mb-1 btn-block' variant='warning'>
+            <Col md={6}>
+              <Button className='mb-2 btn-block' variant='warning'>
                 Đổi ngay
               </Button>
             </Col>
-            <Col xs={6}>
+            <Col md={6}>
               <Button className='btn-block' variant='primary'>
                 Chi tiết
               </Button>

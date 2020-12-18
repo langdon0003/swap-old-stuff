@@ -9,7 +9,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <main className='mt-3'>
+      <main className='mt-2' style={{ minHeight: '85vh' }}>
         <Container>
           <MainSwitch />
         </Container>

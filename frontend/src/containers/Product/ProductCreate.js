@@ -1,13 +1,4 @@
-import {
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  FormControl,
-  InputGroup,
-} from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Form } from 'react-bootstrap'
 import { Rating } from '../../components'
 
 import { products } from '../../dumpData'
@@ -16,11 +7,11 @@ const product = products[0]
 export default function ProductCreate() {
   return (
     <>
-      <Button className='my-3' variant='secondary'>
+      <Button className='my-2' variant='warning'>
         Quay Lại
       </Button>
       <Form>
-        <h3 class='text-center'>TẠO MỚI</h3>
+        <h2>TẠO MỚI</h2>
         <Row>
           <Col lg={3} md={3}>
             <Image
