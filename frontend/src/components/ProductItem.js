@@ -1,38 +1,53 @@
 import { Card, Button, Badge, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function ProductItem(props) {
+  console.log('props.product :>> ', props.product)
+  // const history = useHistory()
+  const {
+    _id,
+    image,
+    title,
+    user,
+    location,
+    numLikes,
+    numComments,
+  } = props.product
   return (
     <>
       <Card
         className='product-item mb-4 position-relative'
         style={{ borderRadius: '1.078em' }}
       >
-        <Card.Img
-          style={{
-            borderTopRightRadius: '1.078em',
-            borderTopLeftRadius: '1.078em',
-          }}
-          variant='top'
-          src='mouse.jpg'
-        />
+        <Link to={`/products/${_id}`}>
+          <Card.Img
+            style={{
+              borderTopRightRadius: '1.078em',
+              borderTopLeftRadius: '1.078em',
+            }}
+            variant='top'
+            src='mouse.jpg'
+          />
+        </Link>
 
         <Card.Body className='px-3 py-2'>
           <Card.Title as='h5' className='my-2'>
-            {props.item.title}
+            <Link to={`/products/${_id}`}>{title} </Link>
           </Card.Title>
-          
+
           <Card.Subtitle as='p' className='mb-1'>
-            {props.item.user}
+            {user}
           </Card.Subtitle>
 
           <Row>
             <Col sm={6} md={12} lg={6}>
-              <Card.Text>{props.item.location}</Card.Text>
+              <Card.Text>{location}</Card.Text>
             </Col>
             <Col sm={3} xs={3} lg={3}>
               <Badge className='mt-1' variant='primary badge-pill'>
                 <Card.Text as='span'>
-                  {props.item.likes}{' '}
+                  {numLikes}{' '}
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -54,7 +69,7 @@ export default function ProductItem(props) {
             <Col sm={3} xs={3} lg={3}>
               <Badge className='my-1' variant='primary badge-pill'>
                 <Card.Text as='span'>
-                  {props.item.comments}{' '}
+                  {numComments}{' '}
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='16'
@@ -81,14 +96,23 @@ export default function ProductItem(props) {
         >
           <Row>
             <Col md={6}>
-              <Button className='mb-2 btn-block' variant='warning'>
+              <Button
+                className='mb-2 btn-block'
+                variant='warning'
+                onCLick={() => {
+                  console.log('history :>> ')
+                }}
+              >
                 Đổi ngay
               </Button>
             </Col>
             <Col md={6}>
-              <Button className='btn-block' variant='primary'>
-                Chi tiết
-              </Button>
+              <Link
+                className='btn btn-block btn-primary'
+                to={`/products/${_id}`}
+              >
+                CHI TIẾT
+              </Link>
             </Col>
           </Row>
         </Card.Footer>
