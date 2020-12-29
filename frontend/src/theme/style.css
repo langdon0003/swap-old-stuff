@@ -1,7 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;800&display=swap');
 
+@import url('http://fonts.cdnfonts.com/css/airbnb-cereal-app');
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 * {
-  font-family: 'Raleway' !important;
+  /* border: 1px solid blue; */
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  text-transform: capitalizes;
+  font-size: 16px;
 }
 
 body,
@@ -12,12 +21,22 @@ body,
 h1,
 h2,
 h3,
+h4,
+.btn,
 button {
+  color: black;
   text-transform: uppercase;
+  font-family: 'Kanit', sans-serif !important;
 }
 
-input {
-  border-radius: 18px !important;
+a,
+input,
+button {
+  border-radius: 1.1em !important;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 .product-item {

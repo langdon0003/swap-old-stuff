@@ -10,13 +10,13 @@ export default function Transaction() {
       <Button className='my-2' variant='warning'>
         Quay Lại
       </Button>
-      <h2>GIAO DỊCH - SỐ #666888</h2>
+      <h3>GIAO DỊCH - SỐ #666888</h3>
 
       <h4>MÓN ĐỒ BẠN NHẬN ĐƯỢC</h4>
       <Row>
         <Col lg={4} md={4}>
           <Image
-            style={{ borderRadius: '35px' }}
+            style={{ borderRadius: '1.1em' }}
             src='mouse.jpg'
             alt={product.name}
             fluid

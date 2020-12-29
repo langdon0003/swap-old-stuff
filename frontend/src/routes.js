@@ -1,16 +1,16 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
   Home,
+  NotFound,
+  ProductCreate,
   ProductDetails,
   ProductEdit,
   ProductList,
-  ProductCreate,
-  UserRegister,
-  UserProfile,
-  NotFound,
   RequestTo,
   Transaction,
+  UserProfile,
+  UserRegister,
 } from './containers'
 import UserLogin from './containers/User/UserLogin'
 
@@ -21,16 +21,16 @@ export default function MainSwitch() {
         <ProductCreate />
       </Route>
 
-      <Route path='/products' exact>
-        <ProductList />
-      </Route>
-
       <Route path='/products/:id/edit'>
         <ProductEdit />
       </Route>
 
       <Route path='/products/:id'>
         <ProductDetails />
+      </Route>
+
+      <Route path='/products'>
+        <ProductList />
       </Route>
 
       <Route path='/login' exact>
@@ -41,16 +41,20 @@ export default function MainSwitch() {
         <UserRegister />
       </Route>
 
-      <Route path='/profile' exact>
+      <Route path='/profile'>
         <UserProfile />
       </Route>
 
-      <Route path='/my-requests' exact>
+      <Route path='/requests' exact>
         <RequestTo />
       </Route>
 
       <Route path='/transactions' exact>
         <Transaction />
+      </Route>
+
+      <Route path='/search/'>
+        <Home />
       </Route>
 
       <Route path='/' exact>

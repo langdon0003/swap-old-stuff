@@ -1,18 +1,30 @@
-import { Table, ButtonGroup, Button } from 'react-bootstrap'
-import { products } from '../../dumpData'
+import { useEffect } from 'react'
+import { Button, ButtonGroup, Image, Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { fetchMyList } from '../../redux/modules/product'
 
 export default function ProductList() {
+  const { user: userLogin } = useSelector((s) => s.user.userLogin)
+
+  const { error, loading, products } = useSelector(
+    (s) => s.product.myProductList
+  )
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchMyList(userLogin._id, false))
+  }, [dispatch, userLogin])
+
   return (
     <>
-      <Button className='my-2' variant='warning'>
-        Quay Lại
-      </Button>
-      <h2>DANH SÁCH ĐỒ CŨ CỦA BẠN</h2>
+      <Link className='btn btn-warning my-2' to='/'>
+        QUAY LẠI
+      </Link>
+      <h3>DANH SÁCH ĐỒ CŨ CỦA BẠN</h3>
 
       <Table striped hover>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Tiêu đề</th>
             <th>Hình ảnh</th>
             <th>Chi tiết</th>
@@ -24,17 +36,39 @@ export default function ProductList() {
         <tbody>
           {products.map((item, _id) => (
             <tr>
-              <td>{item._id}</td>
               <td>{item.title}</td>
-              <td>{item.image}</td>
+              <td>
+                <Image
+                  style={{ borderRadius: '1.1em', width: '250px' }}
+                  src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
+                  alt={item.title}
+                  fluid
+                ></Image>
+              </td>
               <td>{item.description}</td>
-              <td>{item.status}</td>
-              <td>{item.requests}</td>
+              <td>
+                {!item.tradeTo
+                  ? 'Chưa đổi'
+                  : item.tradeTo.status
+                  ? 'Chờ'
+                  : 'Đã đổi'}
+              </td>
+              <td>
+                <Link to={`/products/${item._id}`}>
+                  <strong>{item.numRequests}</strong>
+                </Link>
+              </td>
               <td>
                 <ButtonGroup aria-label='Basic example'>
-                  <Button variant='secondary'>Dừng</Button>
-                  <Button variant='secondary'>Chỉnh sửa</Button>
-                  <Button variant='secondary'>Xem</Button>
+                  <Button variant='secondary' className='mr-1'>
+                    Hủy
+                  </Button>
+                  <Link
+                    className='btn btn-secondary'
+                    to={`/products/${item._id}/edit`}
+                  >
+                    Sửa
+                  </Link>
                 </ButtonGroup>
               </td>
             </tr>

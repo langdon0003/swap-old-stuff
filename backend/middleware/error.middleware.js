@@ -1,5 +1,5 @@
 exports.notFoundError = (req, res, next) => {
-  const error = new Error(`Not found - ${req.originalUrl}`)
+  const error = new Error(`😱 😱 😱 Not found @ ${req.originalUrl}`)
   res.status(404)
   next(error)
 }
@@ -12,12 +12,12 @@ exports.customErrorHandler = (error, req, res, next) => {
     message: error.message,
     stack: error.stack,
   })
-  console.log('Err status :>> ', statusCode)
-  console.log('Err mess :>> ', error.message)
+  console.log('🔥 Err code :>> ', statusCode)
+  console.log('💩 Err mess :>> ', error.message)
 }
 
 // List of common errors you should prepare for:
-
+// 🎉 🥳 🎊  🔥 👍 💩 😵  😱
 // 400 Bad Request Error:
 // Used when user fails to include a field (like no credit card information in a payment form)
 // Also used when user enters incorrect information (Example: Entering different passwords in a password field and password confirmation field).

@@ -28,12 +28,52 @@ likeSchema = mongoose.Schema(
   }
 )
 
+requestFromSchema = mongoose.Schema(
+  {
+    item: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Product',
+    },
+  },
+  {
+    timestamps: true,
+  }
+)
+
+tradeToSchema = mongoose.Schema({
+  status: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  item: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Product',
+  },
+  title: {
+    type: String,
+    required: true,
+    default: null,
+  },
+  image: {
+    type: String,
+    required: true,
+    default: null,
+  },
+})
+
 const productSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
+    },
+    userName: {
+      type: String,
+      required: true,
     },
     title: {
       type: String,
@@ -50,6 +90,9 @@ const productSchema = mongoose.Schema(
     image: {
       type: String,
       required: true,
+    },
+    wishList: {
+      type: String,
     },
     numComments: {
       type: Number,
@@ -68,27 +111,8 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    requestFrom: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product',
-      },
-    ],
-    tradeTo: {
-      status: {
-        type: String,
-        required: true,
-        default: 'open',
-        // pending || finished
-      },
-      item: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product',
-        default: {},
-      },
-    },
+    requestsFrom: [requestFromSchema],
+    tradeTo: tradeToSchema,
   },
   {
     timestamps: true,

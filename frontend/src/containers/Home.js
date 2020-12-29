@@ -1,20 +1,24 @@
 import { useEffect } from 'react'
-import { Col, Row, Alert, Spinner } from 'react-bootstrap'
+import { Alert, Col, Row, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import ProductItem from '../components/ProductItem'
 import { fetchList } from '../redux/modules/product'
 
 export default function Home() {
+  const location = useLocation()
+
+  const keyword = location.pathname.split('/')[2] || ''
   const dispatch = useDispatch()
-  const { error, loading, products } = useSelector((s) => s.productList)
-  console.log('error :>> ', error)
+  const { error, loading, products } = useSelector((s) => s.product.productList)
+  
   useEffect(() => {
-    dispatch(fetchList())
-  }, [dispatch])
+    dispatch(fetchList(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>
-      <h2>Old Stuff List</h2>
+      <h1>Old Stuff List</h1>
       {loading ? (
         <Spinner animation='border' variant='primary' />
       ) : error ? (
@@ -22,7 +26,7 @@ export default function Home() {
       ) : (
         <Row>
           {products.map((item) => (
-            <Col md={6} lg={4} key={item.id}>
+            <Col md={6} lg={4} key={item._id}>
               <ProductItem product={item} />
             </Col>
           ))}

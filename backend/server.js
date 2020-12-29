@@ -1,13 +1,18 @@
 // IMPORTS
-const express = require('express')
-const dotenv = require('dotenv')
+const morgan = require('morgan')
 const colors = require('colors')
+const dotenv = require('dotenv')
+const express = require('express')
+const bodyParser = require('body-parser')
 const connectDB = require('./config/db')
 const {
   notFoundError,
   customErrorHandler,
 } = require('./middleware/error.middleware')
-const productRoute = require('./routes/product.route')
+const productRoutes = require('./routes/product.route')
+const userRoutes = require('./routes/user.route')
+const requestRoutes = require('./routes/request.route')
+const transactionRoutes = require('./routes/transaction.route')
 
 // CONFIG
 dotenv.config()
@@ -17,8 +22,16 @@ connectDB()
 const PORT = process.env.PORT || 5000
 const app = express()
 
-app.use(express.json())
-app.use('/api/products', productRoute)
+morgan.token('custom', '🧅 🧅 :method :url => :status :total-time ms')
+app.use(morgan('custom'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// ROUTES
+app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/requests', requestRoutes)
+app.use('/api/transactions', transactionRoutes)
 
 // Handle page not found error
 app.use(notFoundError)
@@ -28,5 +41,7 @@ app.use(customErrorHandler)
 
 app.listen(
   PORT,
-  console.log(`${process.env.NODE_ENV} MODE SERVER OK @: ${PORT}`.yellow.bold)
+  console.log(
+    `👍 👍 👍 ${process.env.NODE_ENV} MODE SERVER OK @: ${PORT}`.yellow.bold
+  )
 )
