@@ -3,6 +3,7 @@ import { Badge, Card, Col, Row, Toast } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { createLike } from '../redux/modules/product'
+import ImageBox from './ImageBox'
 import TradeModal from './TradeModal'
 
 export default function ProductItem(props) {
@@ -26,14 +27,6 @@ export default function ProductItem(props) {
   const { user } = useSelector((s) => s.user.userLogin)
 
   useEffect(() => {
-    /**
-     * if user: false
-     * => setIsLiked : false
-     * if user: true
-     * => check if props.likes.find(x=>x.user === user._id)
-     *  -> YES: setIsLiked : true
-     *  -> NO: setIsLiked : false
-     */
     if (!user) {
       setIsLiked(false)
     } else if (!likes.find((x) => x.user === user._id)) {
@@ -58,20 +51,32 @@ export default function ProductItem(props) {
 
   return (
     <>
-      <Card
-        className='product-item mb-4 position-relative'
-        style={{ borderRadius: '1.1em' }}
-      >
+      <Card className='mb-4 position-relative'>
         <Link to={`/products/${_id}`}>
-          <Card.Img
+          {/* <Card.Img
             style={{
-              borderTopRightRadius: '1.1em',
-              borderTopLeftRadius: '1.1em',
+              width: '100%',
+              maxHeight: '212px',
+              borderRadius: '1.1em 1.1em 0em 0em ',
             }}
             variant='top'
             src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`}
-            className='p-2'
-          />
+            className='pb-2'
+          ></Card.Img> */}
+          <ImageBox image={image} borderRadius='1.1em 1.1em 0em 0em' />
+          {/* <div
+            style={{
+              // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
+              backgroundImage:
+                'url(' + process.env.REACT_APP_IMAGE_URL_PREFIX + image + ')',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+              height: '212px',
+              borderRadius: '1.1em 1.1em 0em 0em ',
+            }}
+          ></div> */}
+
           <Card.ImgOverlay>
             <Toast
               onClose={() => setShow(false)}
@@ -87,18 +92,24 @@ export default function ProductItem(props) {
         </Link>
 
         <Card.Body className='px-3 pb-2 pt-0'>
-          <Card.Title as='h6' className='my-2 text-muted'>
+          <Card.Title className='my-2   post__title' style={{ height: '40px' }}>
             <Link to={`/products/${_id}`}>{title} </Link>
           </Card.Title>
 
           <Row>
-            <Col sm={6} md={12} lg={6} className='pr-1'>
-              <Card.Text className='mt-2'>
-                <strong>{location}</strong>
+            <Col
+              sm={6}
+              md={12}
+              lg={6}
+              className='pr-1 align-middle'
+              style={{ height: '52px' }}
+            >
+              <Card.Text className='mt-0'>
+                <div className='align-bottom  post__sub_title'>{location}</div>
               </Card.Text>
             </Col>
 
-            <Col sm={2} xs={2} lg={2} className='pl-1'>
+            <Col sm={2} xs={2} lg={2} className='pl-2'>
               <Badge className='my-1' variant='primary badge-pill'>
                 <Card.Text as='span'>
                   <small>{numComments} </small>
@@ -177,7 +188,7 @@ export default function ProductItem(props) {
         >
           <Row>
             {user && user._id !== sellerId ? (
-              <Col md={6}>
+              <Col className='mb-2' md={6}>
                 <TradeModal
                   productId={_id}
                   productImage={image}
@@ -188,7 +199,7 @@ export default function ProductItem(props) {
             ) : (
               ''
             )}
-            <Col md={user && user._id !== sellerId ? 6 : 12}>
+            <Col md={user && user._id !== sellerId ? 6 : 12} className='mb-2'>
               <Link
                 className='btn btn-block btn-primary'
                 to={`/products/${_id}`}

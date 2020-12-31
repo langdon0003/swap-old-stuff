@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Button, ButtonGroup, Image, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ImageBox from '../../components/ImageBox'
 import { fetchMyList } from '../../redux/modules/product'
 
 export default function ProductList() {
@@ -22,12 +23,11 @@ export default function ProductList() {
       </Link>
       <h3>DANH SÁCH ĐỒ CŨ CỦA BẠN</h3>
 
-      <Table striped hover>
+      <Table responsive striped hover>
         <thead>
           <tr>
             <th>Tiêu đề</th>
             <th>Hình ảnh</th>
-            <th>Chi tiết</th>
             <th>Tình trạng</th>
             <th>Số yêu cầu</th>
             <th>Chỉnh sửa</th>
@@ -36,16 +36,16 @@ export default function ProductList() {
         <tbody>
           {products.map((item, _id) => (
             <tr>
-              <td>{item.title}</td>
+              <td xs={4}>{item.title}</td>
               <td>
-                <Image
+                {/* <Image
                   style={{ borderRadius: '1.1em', width: '250px' }}
                   src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
                   alt={item.title}
                   fluid
-                ></Image>
+                ></Image> */}
+                <ImageBox image={item.image} height='80px' />
               </td>
-              <td>{item.description}</td>
               <td>
                 {!item.tradeTo
                   ? 'Chưa đổi'

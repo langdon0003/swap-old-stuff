@@ -11,14 +11,14 @@ export default function Home() {
   const keyword = location.pathname.split('/')[2] || ''
   const dispatch = useDispatch()
   const { error, loading, products } = useSelector((s) => s.product.productList)
-  
+
   useEffect(() => {
     dispatch(fetchList(keyword))
   }, [dispatch, keyword])
 
   return (
     <>
-      <h1>Old Stuff List</h1>
+      <div className='heading__title'>Old Stuff List</div>
       {loading ? (
         <Spinner animation='border' variant='primary' />
       ) : error ? (

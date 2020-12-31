@@ -23,8 +23,6 @@ export default function UserProfile() {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  
-
   const userLogin = useSelector((stage) => stage.user.userLogin)
   const UpdateProfile = useSelector((stage) => stage.user.UpdateProfile)
   const { error, loading, user } = useSelector(
@@ -134,7 +132,7 @@ export default function UserProfile() {
           <Col md={8}>
             <h4>Địa chỉ</h4>
             <Form.Row>
-              <Col xs={5}>
+              <Col xs={7} md={6}>
                 <Form.Group controlId='lastName'>
                   <Form.Label>Họ, Tên lót</Form.Label>
                   <Form.Control
@@ -145,7 +143,7 @@ export default function UserProfile() {
                   />
                 </Form.Group>
               </Col>
-              <Col xs={4}>
+              <Col xs={5} md={3}>
                 <Form.Group controlId='firstName'>
                   <Form.Label>Tên</Form.Label>
                   <Form.Control
@@ -156,7 +154,7 @@ export default function UserProfile() {
                   />
                 </Form.Group>
               </Col>
-              <Col>
+              <Col xs={7} md={3}>
                 <Form.Group controlId='phoneNumber'>
                   <Form.Label>Điện thoại</Form.Label>
                   <Form.Control
@@ -169,7 +167,7 @@ export default function UserProfile() {
               </Col>
             </Form.Row>
             <Form.Row>
-              <Col>
+              <Col xs={4}>
                 <Form.Group controlId='addressNo'>
                   <Form.Label>Số nhà</Form.Label>
                   <Form.Control
@@ -179,7 +177,7 @@ export default function UserProfile() {
                   />
                 </Form.Group>
               </Col>
-              <Col xs={7}>
+              <Col xs={8}>
                 <Form.Group controlId='street'>
                   <Form.Label>Tên Đường</Form.Label>
                   <Form.Control
@@ -191,7 +189,7 @@ export default function UserProfile() {
               </Col>
             </Form.Row>
             <Form.Row>
-              <Col xs={7}>
+              <Col xs={6}>
                 <Form.Group controlId='city'>
                   <Form.Label>Thành Phố</Form.Label>
                   <Form.Control
@@ -201,7 +199,7 @@ export default function UserProfile() {
                   />
                 </Form.Group>
               </Col>
-              <Col>
+              <Col xs={6}>
                 <Form.Group controlId='province'>
                   <Form.Label>Tỉnh</Form.Label>
                   <Form.Control

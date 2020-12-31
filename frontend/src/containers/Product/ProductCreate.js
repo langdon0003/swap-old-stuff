@@ -1,17 +1,10 @@
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
-import {
-  Button,
-  Col,
-  Form,
-  Image,
-  ListGroup,
-  ProgressBar,
-  Row,
-} from 'react-bootstrap'
+import { Button, Col, Form, ListGroup, ProgressBar, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Rating } from '../../components'
+import ImageBox from '../../components/ImageBox'
 import { createProduct, CREATE_NEW_RESET } from '../../redux/modules/product'
 
 export default function ProductCreate() {
@@ -78,9 +71,9 @@ export default function ProductCreate() {
       <Form onSubmit={createProductHandler}>
         <h3>TẠO MỚI</h3>
         <Row>
-          <Col lg={3} md={3}>
-            <Image
-              style={{ borderRadius: '1.1em' }}
+          <Col lg={4} md={4}>
+            {/* <Image
+              style={{ maxWidth: '343px', maxHeight: '212px' }}
               src={
                 !image
                   ? 'https://placeimg.com/300/300/tech'
@@ -88,7 +81,25 @@ export default function ProductCreate() {
               }
               alt={title}
               fluid
-            ></Image>
+            ></Image> */}
+            {/* <div
+              style={{
+                // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
+                backgroundImage: image
+                  ? 'url(' +
+                    process.env.REACT_APP_IMAGE_URL_PREFIX +
+                    image +
+                    ')'
+                  : 'url(https://placeimg.com/300/300/tech)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                height: '212px',
+                borderRadius: '1.1em',
+              }}
+            ></div> */}
+            <ImageBox image={image} />
+
             {percentUpload && (
               <>
                 <ProgressBar
@@ -97,12 +108,12 @@ export default function ProductCreate() {
                   animated
                   label={`${percentUpload}%`}
                   now={percentUpload}
-                  className='mt-1'
+                  className='mt-2'
                 />
               </>
             )}
           </Col>
-          <Col lg={6} md={6}>
+          <Col lg={5} md={5}>
             <Form.Group controlId='title'>
               <Form.Label>Tiêu đề</Form.Label>
               <Form.Control
@@ -122,7 +133,7 @@ export default function ProductCreate() {
 
             <>
               <Form inline>
-                <Form.File id='formcheck-api-regular'>
+                <Form.File as='small' className='mb-2'>
                   <Form.File.Input
                     onChange={({ target: { files } }) => {
                       setImageUpload(files[0])
@@ -131,7 +142,8 @@ export default function ProductCreate() {
                 </Form.File>
                 <Button
                   type='button'
-                  class=' btn-success btn btn-small'
+                  variant='success'
+                  size='sm'
                   onClick={uploadImageHandler}
                 >
                   Upload
@@ -166,8 +178,8 @@ export default function ProductCreate() {
         <h3 className='mt-2'>Xem trước bài đăng</h3>
         <Row>
           <Col lg={4} md={4}>
-            <Image
-              style={{ borderRadius: '1.1em' }}
+            {/* <Image
+              style={{ maxWidth: '343px', maxHeight: '212px' }}
               src={
                 !image
                   ? 'https://placeimg.com/300/300/tech'
@@ -175,7 +187,24 @@ export default function ProductCreate() {
               }
               alt={title}
               fluid
-            ></Image>
+            ></Image> */}
+            {/* <div
+              style={{
+                // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
+                backgroundImage: image
+                  ? 'url(' +
+                    process.env.REACT_APP_IMAGE_URL_PREFIX +
+                    image +
+                    ')'
+                  : 'url(https://placeimg.com/300/300/tech)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                height: '212px',
+                borderRadius: '1.1em',
+              }}
+            ></div> */}
+            <ImageBox image={image} />
           </Col>
           <Col lg={5} md={5}>
             <ListGroup variant='flush'>

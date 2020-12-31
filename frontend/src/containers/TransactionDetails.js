@@ -1,10 +1,9 @@
-import { Button, Row, Col, ListGroup, Image, Table } from 'react-bootstrap'
+import { Button, Col, Image, ListGroup, Row, Table } from 'react-bootstrap'
 import { Rating } from '../components'
 
-import { products } from '../dumpData'
-const product = products[0]
+const product = []
 
-export default function Transaction() {
+export default function TransactionDetails() {
   return (
     <>
       <Button className='my-2' variant='warning'>
@@ -50,7 +49,7 @@ export default function Transaction() {
         </Col>
       </Row>
       <h4 className='my-3'>MÓN BẠN TRAO ĐỔI</h4>
-      <Table striped hover>
+      <Table responsive striped hover>
         <thead>
           <tr>
             <th>ID</th>

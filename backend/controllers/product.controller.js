@@ -57,7 +57,7 @@ exports.getProductById = asyncHandler(async (req, res) => {
     })
     .populate({
       path: 'requestsFrom.item',
-      select: ['title', 'image', 'userName', 'location'],
+      select: ['title', 'image', 'userName', 'location', 'user'],
     })
   if (!product) {
     throw new Error('Product not found!')

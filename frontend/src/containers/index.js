@@ -1,15 +1,16 @@
 import App from './App'
 import Home from './Home'
-import ProductDetails from './Product/ProductDetails'
+import NotFound from './NotFound'
 import ProductCreate from './Product/ProductCreate'
+import ProductDetails from './Product/ProductDetails'
 import ProductEdit from './Product/ProductEdit'
 import ProductList from './Product/ProductList'
-import UserRegister from './User/UserRegister'
-import UserProfile from './User/UserProfile'
-import UserLogin from './User/UserLogin'
 import RequestTo from './RequestTo'
-import Transaction from './Transaction'
-import NotFound from './NotFound'
+import TransactionDetails from './TransactionDetails'
+import TransactionList from './TransactionList'
+import UserLogin from './User/UserLogin'
+import UserProfile from './User/UserProfile'
+import UserRegister from './User/UserRegister'
 
 export {
   App,
@@ -21,7 +22,8 @@ export {
   UserRegister,
   UserProfile,
   RequestTo,
-  Transaction,
+  TransactionDetails,
+  TransactionList,
   NotFound,
   UserLogin,
 }

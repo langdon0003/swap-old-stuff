@@ -19,13 +19,13 @@ export default function Header() {
         <Container>
           <IndexLinkContainer to='/'>
             <Navbar.Brand>
-              <h4 className='mb-0'>Swap Old Stuff</h4>
+              <div className='logo__text mb-0'>Swap Old Stuff</div>
             </Navbar.Brand>
           </IndexLinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <SearchBox />
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto menu__text'>
               {!user ? (
                 <>
                   <LinkContainer to='/login'>

@@ -8,11 +8,12 @@ import {
   ProductEdit,
   ProductList,
   RequestTo,
-  Transaction,
+  TransactionDetails,
+  TransactionList,
+  UserLogin,
   UserProfile,
   UserRegister,
 } from './containers'
-import UserLogin from './containers/User/UserLogin'
 
 export default function MainSwitch() {
   return (
@@ -45,12 +46,16 @@ export default function MainSwitch() {
         <UserProfile />
       </Route>
 
-      <Route path='/requests' exact>
+      <Route path='/requests'>
         <RequestTo />
       </Route>
 
-      <Route path='/transactions' exact>
-        <Transaction />
+      <Route path='/transactions/:id'>
+        <TransactionDetails />
+      </Route>
+
+      <Route path='/transactions'>
+        <TransactionList />
       </Route>
 
       <Route path='/search/'>

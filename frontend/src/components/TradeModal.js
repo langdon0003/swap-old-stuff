@@ -1,19 +1,12 @@
 import { useEffect, useState } from 'react'
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Image,
-  Modal,
-  Row,
-} from 'react-bootstrap'
+import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   createRequest,
   fetchMyList,
   fetchRequests,
 } from '../redux/modules/product'
+import ImageBox from './ImageBox'
 
 const TradeModel = ({ productTitle, productImage, productId, userId }) => {
   const [giveAwayItemId, setGiveAwayItemId] = useState('')
@@ -81,31 +74,26 @@ const TradeModel = ({ productTitle, productImage, productId, userId }) => {
                   <>
                     <Container>
                       <Row className='border-bottom py-1'>
-                        <Col xs={6} md={6}>
+                        <Col xs md>
                           <strong>Tiêu đề</strong>
                         </Col>
-                        <Col xs={6} md={3}>
+                        <Col xs={4} md={4}>
                           <strong>Hình ảnh</strong>
-                        </Col>
-                        <Col xs={6} md={3}>
-                          <strong>Số yêu cầu</strong>
                         </Col>
                       </Row>
                       {giveAwayItem.map((item) => (
-                        <Row className='pt-1 pb-0'>
-                          <Col xs={6} md={6}>
+                        <Row className='pt-2 pb-0'>
+                          <Col xs md>
                             {item.title}
                           </Col>
-                          <Col xs={6} md={3}>
-                            <Image
-                              style={{ borderRadius: '1.1em' }}
+                          <Col xs={4} md={4}>
+                            {/* <Image
+                              style={{ maxWidth: '160px', maxHeight: '99px' }}
                               src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
                               alt={item.title}
                               fluid
-                            ></Image>
-                          </Col>
-                          <Col xs={6} md={3}>
-                            {item.numRequests}
+                            ></Image> */}
+                            <ImageBox image={item.image} height='80px' />
                           </Col>
                         </Row>
                       ))}

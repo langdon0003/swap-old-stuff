@@ -1,17 +1,10 @@
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
-import {
-  Button,
-  Col,
-  Form,
-  Image,
-  ListGroup,
-  ProgressBar,
-  Row,
-} from 'react-bootstrap'
+import { Button, Col, Form, ListGroup, ProgressBar, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { Rating } from '../../components'
+import ImageBox from '../../components/ImageBox'
 import { fetchDetails, updateProduct } from '../../redux/modules/product'
 
 export default function ProductEdit() {
@@ -100,8 +93,8 @@ export default function ProductEdit() {
       <Form onSubmit={updateProductHandler}>
         <h3>Chỉnh sửa</h3>
         <Row>
-          <Col lg={3} md={3}>
-            <Image
+          <Col lg={4} md={4}>
+            {/* <Image
               style={{ borderRadius: '1.1em' }}
               src={
                 !image
@@ -110,7 +103,9 @@ export default function ProductEdit() {
               }
               alt={title}
               fluid
-            ></Image>
+            ></Image> */}
+            <ImageBox image={image} />
+
             {percentUpload && (
               <>
                 <ProgressBar
@@ -119,12 +114,12 @@ export default function ProductEdit() {
                   animated
                   label={`${percentUpload}%`}
                   now={percentUpload}
-                  className='mt-1'
+                  className='mt-2'
                 />
               </>
             )}
           </Col>
-          <Col lg={6} md={6}>
+          <Col lg={5} md={5}>
             <Form.Group controlId='title'>
               <Form.Label>Tiêu đề</Form.Label>
               <Form.Control
@@ -144,7 +139,7 @@ export default function ProductEdit() {
 
             <>
               <Form inline>
-                <Form.File id='formcheck-api-regular'>
+                <Form.File as='small' className='mb-2'>
                   <Form.File.Input
                     onChange={({ target: { files } }) => {
                       setImageUpload(files[0])
@@ -153,7 +148,8 @@ export default function ProductEdit() {
                 </Form.File>
                 <Button
                   type='button'
-                  class=' btn-success btn btn-small'
+                  variant='success'
+                  size='sm'
                   onClick={uploadImageHandler}
                 >
                   Upload
@@ -188,7 +184,7 @@ export default function ProductEdit() {
         <h3 className='mt-2'>Xem trước bài đăng</h3>
         <Row>
           <Col lg={4} md={4}>
-            <Image
+            {/* <Image
               style={{ borderRadius: '1.1em' }}
               src={
                 !image
@@ -197,7 +193,8 @@ export default function ProductEdit() {
               }
               alt={title}
               fluid
-            ></Image>
+            ></Image> */}
+            <ImageBox image={image} />
           </Col>
           <Col lg={5} md={5}>
             <ListGroup variant='flush'>

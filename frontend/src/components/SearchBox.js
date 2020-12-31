@@ -13,17 +13,17 @@ const SearchBox = () => {
     } else {
       history.push(`/`)
     }
-  } 
+  }
   return (
     <Form onSubmit={searchHandler} inline>
       <FormControl
         type='text'
         placeholder='tìm kiếm ...'
-        className='mr-sm-2'
+        className='mr-sm-2 contain_text'
         value={keyword}
         onChange={({ target: { value } }) => setKeyword(value)}
       />
-      <Button type='submit' variant='warning'>
+      <Button className='mt-1' type='submit' variant='warning'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='16'

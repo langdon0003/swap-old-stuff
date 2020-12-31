@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const transactionSchema = mongoose.Schema(
   {
@@ -79,12 +79,24 @@ const transactionSchema = mongoose.Schema(
       },
     },
     feedbackToSeller: {
-      rating: { type: Number, default: null },
-      comment: { type: String, default: null },
+      rating: {
+        type: Number,
+        default: null,
+      },
+      comment: {
+        type: String,
+        default: null,
+      },
     },
     feedbackToBuyer: {
-      rating: { type: Number, default: null },
-      comment: { type: String, default: null },
+      rating: {
+        type: Number,
+        default: null,
+      },
+      comment: {
+        type: String,
+        default: null,
+      },
     },
   },
   {
@@ -94,4 +106,4 @@ const transactionSchema = mongoose.Schema(
 
 const Transaction = mongoose.model('Transaction', transactionSchema)
 
-export default Transaction
+module.exports = Transaction

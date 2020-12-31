@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import ImageBox from '../components/ImageBox'
 import { fetchRequests } from '../redux/modules/product'
 
-export default function RequestTo() {
+export default function TransactionList() {
   const [isLogin, setIsLogin] = useState(false)
   const [successFetch, setSuccessFetch] = useState(false)
   const { user: userLogin } = useSelector((s) => s.user.userLogin)
@@ -36,7 +36,7 @@ export default function RequestTo() {
       <Link className='btn btn-warning my-2' to='/'>
         QUAY LẠI
       </Link>
-      <h3>DANH SÁCH YÊU CẦU ĐỔI CỦA BẠN</h3>
+      <h3>Your Transaction List</h3>
       {!requests || !requests.length ? (
         <Alert variant='warning'>Bạn chưa có yêu cầu đổi nào cả !</Alert>
       ) : (

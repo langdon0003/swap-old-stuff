@@ -5,7 +5,6 @@ import {
   Button,
   Col,
   Form,
-  Image,
   InputGroup,
   ListGroup,
   Row,
@@ -14,6 +13,7 @@ import {
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import ImageBox from '../../components/ImageBox'
 import Rating from '../../components/Rating'
 import TradeModal from '../../components/TradeModal'
 import {
@@ -21,6 +21,7 @@ import {
   CREATE_COMMENT_RESET,
   fetchDetails,
 } from '../../redux/modules/product'
+import { createTX } from '../../redux/modules/transaction'
 import convertTime from '../../utils/convertTime'
 
 export default function ProductDetails() {
@@ -47,6 +48,7 @@ export default function ProductDetails() {
   )
 
   const {
+    _id,
     numComments,
     numLikes,
     numRequests,
@@ -60,7 +62,7 @@ export default function ProductDetails() {
     user,
     userName,
   } = product
-  console.log('userLogin && product.user :>> ', userLogin, product.user)
+
   useEffect(() => {
     if (userLogin && product.user) {
       userLogin._id === product.user._id
@@ -70,7 +72,7 @@ export default function ProductDetails() {
   }, [userLogin, product])
 
   const { success } = useSelector((s) => s.product.createComment)
-  console.log('requestsFrom :>> ', requestsFrom)
+
   const commentHandler = (e) => {
     e.preventDefault()
 
@@ -85,6 +87,10 @@ export default function ProductDetails() {
       }
       dispatch(createComment(productId, comment, numComments + 1))
     }
+  }
+  const createTXHandler = ({ buyerItemId, sellerItemId }) => {
+    dispatch(createTX({ buyerItemId, sellerItemId }))
+    // Set Success Message
   }
 
   useEffect(() => {
@@ -118,36 +124,38 @@ export default function ProductDetails() {
         <Alert variant='warning'>{error}</Alert>
       ) : (
         <>
-          <h3>CHI TIẾT</h3>
+          <div className='heading__title'>CHI TIẾT</div>
           <Row>
             <Col lg={4} md={4}>
-              <Image
+              {/* <Image
                 style={{ borderRadius: '1.1em' }}
                 src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`}
                 alt={title}
                 fluid
-              ></Image>
+              ></Image> */}
+              <ImageBox image={image} />
             </Col>
             <Col lg={5} md={5}>
               <ListGroup variant='flush'>
-                <ListGroup.Item as='h6' className='mb-0 py-2'>
+                <ListGroup.Item className='post__title mb-0 py-2'>
                   {title}
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <strong>Địa điểm: </strong>
+                  <span className='post__sub_title'>Địa điểm: </span>
                   {location}
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                  <strong>Thông tin chi tiết : </strong>
+                  <span className='post__sub_title'>Thông tin chi tiết : </span>
                   {description}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Đang có <strong>{numRequests}</strong> người yêu cầu đổi
+                  Đang có <span className='post__sub_title'>{numRequests}</span>{' '}
+                  người yêu cầu đổi
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <strong>Đồ đang cần: </strong>
+                  <span className='post__sub_title'>Đồ đang cần: </span>
                   {wishList}
                 </ListGroup.Item>
               </ListGroup>
@@ -157,17 +165,17 @@ export default function ProductDetails() {
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>{`Người bán: ${userName}`}</strong>
+                      <span className='post__sub_title'>{`Người bán: ${userName}`}</span>
                     </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>{`Đánh giá: `}</strong>
+                      <span className='post__sub_title'>{`Đánh giá: `}</span>
                       <Rating
                         value={!user ? 0 : user.rating}
-                        text={`(${!user ? 0 : user.rating}/5)`}
+                        text={` (${!user ? 0 : user.rating}/5)`}
                       />
                     </Col>
                   </Row>
@@ -175,10 +183,15 @@ export default function ProductDetails() {
                 <ListGroup.Item>
                   <Row>
                     <Col className='mb-2'>
-                      Nhận được <strong>{!user ? 0 : user.numFeedback}</strong>{' '}
+                      Nhận được{' '}
+                      <span className='post__sub_title'>
+                        {!user ? 0 : user.numFeedback}
+                      </span>{' '}
                       đánh giá từ{' '}
-                      <strong>{!user ? 0 : user.numSuccessTX}</strong> giao dịch
-                      thành công.
+                      <span className='post__sub_title'>
+                        {!user ? 0 : user.numSuccessTX}
+                      </span>{' '}
+                      giao dịch thành công.
                     </Col>
                   </Row>
                   {isLogin && !isSeller ? (
@@ -198,8 +211,8 @@ export default function ProductDetails() {
         </>
       )}
       <Row>
-        <Col lg={5} md={4}>
-          <h3 className='mt-4'>BÌNH LUẬN</h3>
+        <Col md={4} lg={5}>
+          <div className='mt-4 heading__sub_title'>BÌNH LUẬN</div>
 
           {loading ? (
             <Spinner animation='border' variant='primary' />
@@ -212,24 +225,30 @@ export default function ProductDetails() {
                   {comments.map((item) => (
                     <ListGroup.Item key={item._id}>
                       <Row>
-                        <Col lg={9} className='pl-1'>
+                        <Col centered xs={8} lg={9} className='pl-1'>
                           {item.user === user._id ? (
                             <Badge
                               pill
                               variant='warning'
-                              as='small'
-                              className='text-dark font-weight-bold m-0 p-1'
+                              as='span'
+                              className='text-dark font-weight-bold m-0  py-1 px-1 align-baseline'
                             >
-                              <small>seller</small>
+                              <span className='contain__text_small'>
+                                seller
+                              </span>
                             </Badge>
                           ) : (
                             ''
                           )}
-                          <strong className='ml-1'>{item.name}: </strong>
+                          <span className='post__sub_title ml-1'>
+                            {item.name}:{' '}
+                          </span>
                           <span>{item.text}</span>
                         </Col>
-                        <Col as='small' lg={3} className='text-right'>
-                          <small>{convertTime(item.createdAt)}</small>
+                        <Col as='small' xs={4} lg={3} className='text-right'>
+                          <span className='contain__text_small'>
+                            {convertTime(item.createdAt)}
+                          </span>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -276,8 +295,10 @@ export default function ProductDetails() {
         </Col>
         {isLogin && isSeller ? (
           <>
-            <Col lg={7} md={4}>
-              <h3 className='mt-4'>Danh sách yêu cầu đổi:</h3>
+            <Col md={8} lg={7}>
+              <div className='mt-4 heading__sub_title'>
+                Danh sách yêu cầu đổi
+              </div>
               {loading ? (
                 <Spinner animation='border' variant='primary' />
               ) : error ? (
@@ -286,37 +307,76 @@ export default function ProductDetails() {
                 <>
                   {numRequests ? (
                     <>
-                      <Row as='strong'>
-                        <Col lg={2}>Hình ảnh</Col>
-                        <Col>Tiêu đề</Col>
-                        <Col lg={2}>Địa điểm</Col>
-                        <Col lg={2}>Tên</Col>
-                        <Col lg='auto'>Nhận</Col>
+                      <Row className='post__sub_title'>
+                        <Col xs={3} md={2}>
+                          Hình ảnh
+                        </Col>
+                        <Col xs={6} md={4}>
+                          Tiêu đề
+                        </Col>
+                        <Col xs={{ order: 'last' }} md={2}>
+                          Địa điểm
+                        </Col>
+                        <Col xs={{ order: 'last' }} md={2}>
+                          Tên
+                        </Col>
+                        <Col xs={3} md={{ order: 'last' }}>
+                          Nhận
+                        </Col>
                       </Row>
 
                       {requestsFrom.map((request) => (
-                        <Row className='border-top py-1'>
-                          <Col lg={2}>
-                            <Image
-                              style={{
-                                borderRadius: '1.1em',
-                                // maxWidth: '60px',
-                                maxHeight: '60px',
-                              }}
-                              src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${request.item.image}`}
-                              alt={request.item.title}
-                              fluid
-                            ></Image>
+                        <Row className='border-top py-2'>
+                          <Col xs={3} md={2} className='py-2'>
+                            <Link to={`/products/${request.item._id}`}>
+                              <ImageBox
+                                image={request.item.image}
+                                height='60px'
+                              />
+                            </Link>
                           </Col>
-                          <Col as='small'>{request.item.title}</Col>
-                          <Col as='small' lg={2}>
-                            {request.item.location}
+                          <Col
+                            xs={6}
+                            md={4}
+                            as='small'
+                            className='py-2 post__sub_title'
+                          >
+                            <Link to={`/products/${request.item._id}`}>
+                              {request.item.title}
+                            </Link>
                           </Col>
-                          <Col as='small' lg={2}>
-                            {request.item.userName}
+                          <Col
+                            xs={{ order: 'last' }}
+                            md={2}
+                            className='py-2 align-baseline'
+                            as='small'
+                          >
+                            <span>{request.item.location}</span>
                           </Col>
-                          <Col lg='auto' className='p-2'>
-                            <Button variant='secondary'>OK</Button>
+                          <Col
+                            xs={{ order: 'last' }}
+                            md={2}
+                            className='py-2 align-baseline post__sub_title'
+                          >
+                            <span>{request.item.userName}</span>
+                          </Col>
+                          <Col
+                            xs={3}
+                            md={{ order: 'last' }}
+                            className='py-2 align-baseline'
+                          >
+                            <Button
+                              size='sm'
+                              variant='secondary'
+                              onClick={() =>
+                                createTXHandler({
+                                  buyerItemId: request.item._id,
+                                  sellerItemId: _id,
+                                })
+                              }
+                            >
+                              OK
+                            </Button>
                           </Col>
                         </Row>
                       ))}
