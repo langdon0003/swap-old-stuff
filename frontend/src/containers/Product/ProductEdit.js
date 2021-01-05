@@ -11,9 +11,7 @@ export default function ProductEdit() {
   const { id: productId } = useParams()
 
   const dispatch = useDispatch()
-  const { error, loading, product } = useSelector(
-    (s) => s.product.productDetails
-  )
+  const { product } = useSelector((s) => s.product.productDetails)
 
   const [percentUpload, setPercentUpload] = useState(null)
   const [imageUpload, setImageUpload] = useState()
@@ -58,7 +56,9 @@ export default function ProductEdit() {
         data: { version, public_id, format },
       } = await Axios.request({
         method: 'POST',
-        url: process.env.REACT_APP_CLOUDINARY_URL_UPLOAD,
+        url:
+          process.env.REACT_APP_CLOUDINARY_URL_UPLOAD ||
+          'https://api.cloudinary.com/v1_1/longpos/upload',
         data: formData,
         onUploadProgress: ({ loaded, total }) => {
           const per = Math.round((loaded / total) * 100)
@@ -94,16 +94,6 @@ export default function ProductEdit() {
         <h3>Chỉnh sửa</h3>
         <Row>
           <Col lg={4} md={4}>
-            {/* <Image
-              style={{ borderRadius: '1.1em' }}
-              src={
-                !image
-                  ? 'https://placeimg.com/300/300/tech'
-                  : `${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`
-              }
-              alt={title}
-              fluid
-            ></Image> */}
             <ImageBox image={image} />
 
             {percentUpload && (
@@ -184,16 +174,6 @@ export default function ProductEdit() {
         <h3 className='mt-2'>Xem trước bài đăng</h3>
         <Row>
           <Col lg={4} md={4}>
-            {/* <Image
-              style={{ borderRadius: '1.1em' }}
-              src={
-                !image
-                  ? 'https://placeimg.com/300/300/tech'
-                  : `${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`
-              }
-              alt={title}
-              fluid
-            ></Image> */}
             <ImageBox image={image} />
           </Col>
           <Col lg={5} md={5}>

@@ -1,11 +1,11 @@
 const ImageBox = ({ image, height, width, borderRadius = '1.078em' }) => {
+  const REACT_APP_IMAGE_URL_PREFIX = 'https://res.cloudinary.com/longpos'
   return (
     <>
       <div
         style={{
-          // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
           backgroundImage: image
-            ? 'url(' + process.env.REACT_APP_IMAGE_URL_PREFIX + image + ')'
+            ? 'url(' + REACT_APP_IMAGE_URL_PREFIX + image + ')'
             : 'url(https://placeimg.com/400/250/tech)',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',

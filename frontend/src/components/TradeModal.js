@@ -13,9 +13,7 @@ const TradeModel = ({ productTitle, productImage, productId, userId }) => {
   const [giveAwayItem, setGiveAwayItem] = useState([])
   const [show, setShow] = useState(false)
 
-  const { error, loading, products } = useSelector(
-    (s) => s.product.myProductList
-  )
+  const { products } = useSelector((s) => s.product.myProductList)
   const dispatch = useDispatch()
   useEffect(() => {
     if (show) {
@@ -87,12 +85,6 @@ const TradeModel = ({ productTitle, productImage, productId, userId }) => {
                             {item.title}
                           </Col>
                           <Col xs={4} md={4}>
-                            {/* <Image
-                              style={{ maxWidth: '160px', maxHeight: '99px' }}
-                              src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
-                              alt={item.title}
-                              fluid
-                            ></Image> */}
                             <ImageBox image={item.image} height='80px' />
                           </Col>
                         </Row>

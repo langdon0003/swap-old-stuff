@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Button, ButtonGroup, Image, Table } from 'react-bootstrap'
+import { Button, ButtonGroup,  Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ImageBox from '../../components/ImageBox'
@@ -8,7 +8,7 @@ import { fetchMyList } from '../../redux/modules/product'
 export default function ProductList() {
   const { user: userLogin } = useSelector((s) => s.user.userLogin)
 
-  const { error, loading, products } = useSelector(
+  const {  products } = useSelector(
     (s) => s.product.myProductList
   )
   const dispatch = useDispatch()
@@ -38,12 +38,6 @@ export default function ProductList() {
             <tr>
               <td xs={4}>{item.title}</td>
               <td>
-                {/* <Image
-                  style={{ borderRadius: '1.1em', width: '250px' }}
-                  src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
-                  alt={item.title}
-                  fluid
-                ></Image> */}
                 <ImageBox image={item.image} height='80px' />
               </td>
               <td>

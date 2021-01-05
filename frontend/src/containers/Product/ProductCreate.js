@@ -31,7 +31,9 @@ export default function ProductCreate() {
         data: { version, public_id, format },
       } = await Axios.request({
         method: 'POST',
-        url: process.env.REACT_APP_CLOUDINARY_URL_UPLOAD,
+        url:
+          process.env.REACT_APP_CLOUDINARY_URL_UPLOAD ||
+          'https://api.cloudinary.com/v1_1/longpos/upload',
         data: formData,
         onUploadProgress: ({ loaded, total }) => {
           const per = Math.round((loaded / total) * 100)
@@ -72,32 +74,6 @@ export default function ProductCreate() {
         <h3>TẠO MỚI</h3>
         <Row>
           <Col lg={4} md={4}>
-            {/* <Image
-              style={{ maxWidth: '343px', maxHeight: '212px' }}
-              src={
-                !image
-                  ? 'https://placeimg.com/300/300/tech'
-                  : `${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`
-              }
-              alt={title}
-              fluid
-            ></Image> */}
-            {/* <div
-              style={{
-                // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
-                backgroundImage: image
-                  ? 'url(' +
-                    process.env.REACT_APP_IMAGE_URL_PREFIX +
-                    image +
-                    ')'
-                  : 'url(https://placeimg.com/300/300/tech)',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                width: '100%',
-                height: '212px',
-                borderRadius: '1.1em',
-              }}
-            ></div> */}
             <ImageBox image={image} />
 
             {percentUpload && (
@@ -178,32 +154,6 @@ export default function ProductCreate() {
         <h3 className='mt-2'>Xem trước bài đăng</h3>
         <Row>
           <Col lg={4} md={4}>
-            {/* <Image
-              style={{ maxWidth: '343px', maxHeight: '212px' }}
-              src={
-                !image
-                  ? 'https://placeimg.com/300/300/tech'
-                  : `${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`
-              }
-              alt={title}
-              fluid
-            ></Image> */}
-            {/* <div
-              style={{
-                // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
-                backgroundImage: image
-                  ? 'url(' +
-                    process.env.REACT_APP_IMAGE_URL_PREFIX +
-                    image +
-                    ')'
-                  : 'url(https://placeimg.com/300/300/tech)',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                width: '100%',
-                height: '212px',
-                borderRadius: '1.1em',
-              }}
-            ></div> */}
             <ImageBox image={image} />
           </Col>
           <Col lg={5} md={5}>

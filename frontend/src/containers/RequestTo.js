@@ -6,8 +6,9 @@ import ImageBox from '../components/ImageBox'
 import { fetchRequests } from '../redux/modules/product'
 
 export default function RequestTo() {
+  // eslint-disable-next-line
   const [isLogin, setIsLogin] = useState(false)
-  const [successFetch, setSuccessFetch] = useState(false)
+  // eslint-enable-next-line
   const { user: userLogin } = useSelector((s) => s.user.userLogin)
   useEffect(() => {
     if (!userLogin || !userLogin._id) {
@@ -17,9 +18,7 @@ export default function RequestTo() {
     }
   }, [userLogin])
 
-  const { loading, success, error, requests } = useSelector(
-    (s) => s.product.fetchRequests
-  )
+  const { requests } = useSelector((s) => s.product.fetchRequests)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -57,23 +56,11 @@ export default function RequestTo() {
                 <tr>
                   <td>{item.title}</td>
                   <td>
-                    {/* <Image
-                      style={{ borderRadius: '1.1em', width: '250px' }}
-                      src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
-                      alt={item.title}
-                      fluid
-                    ></Image> */}
                     <ImageBox image={item.image} height='80px' />
                   </td>
                   <td>{item.tradeTo.status ? 'Chờ' : 'Đã hủy'}</td>
                   <td>{item.tradeTo.title}</td>
                   <td>
-                    {/* <Image
-                      style={{ borderRadius: '1.1em', width: '250px' }}
-                      src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.tradeTo.image}`}
-                      alt={item.tradeTo.title}
-                      fluid
-                    ></Image> */}
                     <ImageBox image={item.tradeTo.image} height='80px' />
                   </td>
                   <td>

@@ -53,29 +53,7 @@ export default function ProductItem(props) {
     <>
       <Card className='mb-4 position-relative'>
         <Link to={`/products/${_id}`}>
-          {/* <Card.Img
-            style={{
-              width: '100%',
-              maxHeight: '212px',
-              borderRadius: '1.1em 1.1em 0em 0em ',
-            }}
-            variant='top'
-            src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`}
-            className='pb-2'
-          ></Card.Img> */}
           <ImageBox image={image} borderRadius='1.1em 1.1em 0em 0em' />
-          {/* <div
-            style={{
-              // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
-              backgroundImage:
-                'url(' + process.env.REACT_APP_IMAGE_URL_PREFIX + image + ')',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              width: '100%',
-              height: '212px',
-              borderRadius: '1.1em 1.1em 0em 0em ',
-            }}
-          ></div> */}
 
           <Card.ImgOverlay>
             <Toast

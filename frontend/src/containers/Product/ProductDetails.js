@@ -46,17 +46,11 @@ export default function ProductDetails() {
   const { error, loading, product } = useSelector(
     (s) => s.product.productDetails
   )
-  const {
-    error: errTX,
-    loading: loadingTX,
-    success: successTX,
-    transaction,
-  } = useSelector((s) => s.transaction.createTX)
+  const { success: successTX } = useSelector((s) => s.transaction.createTX)
 
   const {
     _id,
     numComments,
-    numLikes,
     numRequests,
     requestsFrom,
     title,
@@ -139,12 +133,6 @@ export default function ProductDetails() {
           <div className='heading__title'>CHI TIẾT</div>
           <Row>
             <Col lg={4} md={4}>
-              {/* <Image
-                style={{ borderRadius: '1.1em' }}
-                src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`}
-                alt={title}
-                fluid
-              ></Image> */}
               <ImageBox image={image} />
             </Col>
             <Col lg={5} md={5}>
