@@ -1,16 +1,6 @@
-const ImageBox = ({ image, height = '250px', borderRadius = '1.078em' }) => {
+const ImageBox = ({ image, height, width, borderRadius = '1.078em' }) => {
   return (
     <>
-      {/* <Image
-    style={{ maxWidth: '343px', maxHeight: '212px' }}
-    src={
-      !image
-        ? 'https://placeimg.com/300/300/tech'
-        : `${process.env.REACT_APP_IMAGE_URL_PREFIX}${image}`
-    }
-    alt={title}
-    fluid
-  ></Image> */}
       <div
         style={{
           // backgroundImage: {`url({${process.env.REACT_APP_IMAGE_URL_PREFIX}}{${image}})`},
@@ -19,8 +9,8 @@ const ImageBox = ({ image, height = '250px', borderRadius = '1.078em' }) => {
             : 'url(https://placeimg.com/400/250/tech)',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          width: '100%',
-          height: height,
+          width: width || '100%',
+          height: height || '250px',
           borderRadius: borderRadius,
         }}
       ></div>

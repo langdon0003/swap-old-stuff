@@ -137,14 +137,13 @@ const productDetailsReducer = (
     case FETCH_DETAILS_FAIL:
       return { loading: false, error: action.payload }
 
-      case CREATE_COMMENT_DONE:
+    case CREATE_COMMENT_DONE:
       return {
         ...state,
         product: {
           ...state.product,
           comments: action.payload.comments,
-          numComments: state.product.numComments +1 
-          
+          numComments: state.product.numComments + 1,
         },
       }
 

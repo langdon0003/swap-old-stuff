@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Alert, Button, ButtonGroup, Table } from 'react-bootstrap'
+import { Alert, Button, Container, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ImageBox from '../components/ImageBox'
-import { fetchRequests } from '../redux/modules/product'
+import { fetchTransactions } from '../redux/modules/transaction'
 
 export default function TransactionList() {
   const [isLogin, setIsLogin] = useState(false)
   const [successFetch, setSuccessFetch] = useState(false)
   const { user: userLogin } = useSelector((s) => s.user.userLogin)
+
   useEffect(() => {
     if (!userLogin || !userLogin._id) {
       setIsLogin(false)
@@ -17,19 +18,17 @@ export default function TransactionList() {
     }
   }, [userLogin])
 
-  const { loading, success, error, requests } = useSelector(
-    (s) => s.product.fetchRequests
+  const { loading, success, error, transactions } = useSelector(
+    (s) => s.transaction.fetchTX
   )
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchRequests())
+    dispatch(fetchTransactions())
   }, [dispatch])
-  // 1 get all products of userLogin._id === item.user
-  // 2 get all products tradeTo not null
 
-  const cancelRequestHandler = (e) => {
-    console.log('cancelRequestHandler...')
+  const cancelTransactionHandler = (e) => {
+    console.log('cancelTransactionHandler...')
   }
   return (
     <>
@@ -37,60 +36,194 @@ export default function TransactionList() {
         QUAY LẠI
       </Link>
       <h3>Your Transaction List</h3>
-      {!requests || !requests.length ? (
-        <Alert variant='warning'>Bạn chưa có yêu cầu đổi nào cả !</Alert>
+
+      {!transactions || !transactions.length ? (
+        <Alert variant='warning'>Bạn chưa có giao dịch nào cả !</Alert>
       ) : (
-        <Table responsive striped hover>
-          <thead>
-            <tr>
-              <th>Món bị đổi</th>
-              <th>Hình</th>
-              <th>Tình trạng</th>
-              <th>Món bạn muốn</th>
-              <th>Hình</th>
-              <th>Chỉnh sửa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {requests.map((item, _id) => (
-              <>
-                <tr>
-                  <td>{item.title}</td>
-                  <td>
-                    {/* <Image
-                      style={{ borderRadius: '1.1em', width: '250px' }}
-                      src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.image}`}
-                      alt={item.title}
-                      fluid
-                    ></Image> */}
-                    <ImageBox image={item.image} height='80px' />
-                  </td>
-                  <td>{item.tradeTo.status ? 'Chờ' : 'Đã hủy'}</td>
-                  <td>{item.tradeTo.title}</td>
-                  <td>
-                    {/* <Image
-                      style={{ borderRadius: '1.1em', width: '250px' }}
-                      src={`${process.env.REACT_APP_IMAGE_URL_PREFIX}${item.tradeTo.image}`}
-                      alt={item.tradeTo.title}
-                      fluid
-                    ></Image> */}
-                    <ImageBox image={item.tradeTo.image} height='80px' />
-                  </td>
-                  <td>
-                    <ButtonGroup aria-label='Basic example'>
+        <>
+          <Table className='table__sm_hide' responsive striped hover>
+            <thead>
+              <tr>
+                <th>Hình</th>
+                <th>Món bị đổi</th>
+                <th>Tình trạng</th>
+                <th>Hình</th>
+                <th>Món bạn muốn</th>
+                <th>Chỉnh sửa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((item, _id) => (
+                <>
+                  <tr>
+                    <td>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </td>
+                    <td>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.title
+                        : item.seller.item.title}
+                    </td>
+                    <td>{item.transactionStatus}</td>
+                    <td>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </td>
+                    <td>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.title
+                        : item.seller.item.title}
+                    </td>
+                    <td>
                       <Button
-                        variant='secondary'
-                        onClick={cancelRequestHandler}
+                        variant='warning'
+                        onClick={cancelTransactionHandler}
                       >
                         Hủy
                       </Button>
-                    </ButtonGroup>
-                  </td>
-                </tr>
-              </>
-            ))}
-          </tbody>
-        </Table>
+                    </td>
+                  </tr>
+                </>
+              ))}
+              {transactions.map((item, _id) => (
+                <>
+                  <tr>
+                    <td>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </td>
+                    <td>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.title
+                        : item.seller.item.title}
+                    </td>
+                    <td>{item.transactionStatus}</td>
+                    <td>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </td>
+                    <td>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.image
+                        : item.seller.item.title}
+                    </td>
+                    <td>
+                      <Button
+                        variant='warning'
+                        onClick={cancelTransactionHandler}
+                      >
+                        Hủy
+                      </Button>
+                    </td>
+                  </tr>
+                </>
+              ))}
+            </tbody>
+          </Table>
+        </>
+      )}
+
+      {!transactions || !transactions.length ? (
+        <Alert variant='warning'>Bạn chưa có yêu cầu đổi nào cả !</Alert>
+      ) : (
+        <>
+          {transactions.map((item, _id) => (
+            <Container>
+              <div class='border-bottom table__md_hide'>
+                <div class='row row-cols-xs-2 row-cols-sm-3 row-cols-md-6'>
+                  <div class='col-md-1 mb-2'>
+                    <div class='row'>Image</div>
+                    <div class='row'>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </div>
+                  </div>
+                  <div class='col-md-4'>
+                    <div class='row'>Your stuff</div>
+                    <div class='row'>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.title
+                        : item.seller.item.title}{' '}
+                    </div>
+                  </div>
+                  <div class='col-md-1'>
+                    <div class='row'>Status</div>
+                    <div class='row'>{item.transactionStatus}</div>
+                  </div>
+                  <div class='col-md-1'>
+                    <div class='row'>Image</div>
+                    <div class='row'>
+                      <ImageBox
+                        image={
+                          item.buyer.user._id === userLogin._id
+                            ? item.buyer.item.image
+                            : item.seller.item.image
+                        }
+                        height='80px'
+                        width='80px'
+                      />
+                    </div>
+                  </div>
+                  <div class='col-md-4'>
+                    <div class='row'>Your wishlist</div>
+                    <div class='row'>
+                      {item.buyer.user._id === userLogin._id
+                        ? item.buyer.item.title
+                        : item.seller.item.title}
+                    </div>
+                  </div>
+                  <div class='col-md-1'>
+                    <div class='row'>Actions</div>
+                    <div class='row'>
+                      <Button
+                        variant='warning'
+                        onClick={cancelTransactionHandler}
+                      >
+                        Hủy
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          ))}
+        </>
       )}
     </>
   )

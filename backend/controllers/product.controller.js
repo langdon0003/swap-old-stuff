@@ -29,16 +29,12 @@ exports.getProducts = asyncHandler(async (req, res) => {
     condition = { user: userId }
   }
 
-  console.log('condition :>> ', condition)
-  console.log('available :>> ', available)
 
   let products = await Product.find(condition)
 
   if (available === 'true') {
-    console.log('filter...')
     products = products.filter((item) => item.tradeTo === undefined)
   }
-  console.log('products :>> ', products.length)
   res.json(products)
 })
 

@@ -1,4 +1,5 @@
 // IMPORTS
+const path = require('path')
 const morgan = require('morgan')
 const colors = require('colors')
 const dotenv = require('dotenv')
@@ -32,6 +33,19 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/requests', requestRoutes)
 app.use('/api/transactions', transactionRoutes)
+
+const ___dirname = path.resolve()
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(___dirname, '/frontend/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(___dirname, 'frontend', 'build', 'index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('OK ! API is running ...')
+  })
+}
 
 // Handle page not found error
 app.use(notFoundError)

@@ -6,6 +6,18 @@
 
 @import url('http://fonts.cdnfonts.com/css/airbnb-cereal-app');
 
+@media only screen and (max-width: 576px) {
+  .table__sm_hide {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .table__md__hide {
+    display: none;
+  }
+}
+
 * {
   /* border: 1px solid blue; */
   font-family: 'Airbnb Cereal App', 'IBM Plex Sans', sans-serif !important;

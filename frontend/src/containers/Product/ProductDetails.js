@@ -21,7 +21,7 @@ import {
   CREATE_COMMENT_RESET,
   fetchDetails,
 } from '../../redux/modules/product'
-import { createTX } from '../../redux/modules/transaction'
+import { createTX, fetchTransactions } from '../../redux/modules/transaction'
 import convertTime from '../../utils/convertTime'
 
 export default function ProductDetails() {
@@ -46,6 +46,12 @@ export default function ProductDetails() {
   const { error, loading, product } = useSelector(
     (s) => s.product.productDetails
   )
+  const {
+    error: errTX,
+    loading: loadingTX,
+    success: successTX,
+    transaction,
+  } = useSelector((s) => s.transaction.createTX)
 
   const {
     _id,
@@ -90,7 +96,6 @@ export default function ProductDetails() {
   }
   const createTXHandler = ({ buyerItemId, sellerItemId }) => {
     dispatch(createTX({ buyerItemId, sellerItemId }))
-    // Set Success Message
   }
 
   useEffect(() => {
@@ -103,6 +108,13 @@ export default function ProductDetails() {
       dispatch({ type: CREATE_COMMENT_RESET })
     }
   }, [dispatch, success])
+
+  useEffect(() => {
+    if (successTX) {
+      setMessage('Transaction is created !')
+      dispatch(fetchTransactions())
+    }
+  }, [successTX, dispatch])
 
   return (
     <>

@@ -92,18 +92,12 @@ export default function ProductItem(props) {
         </Link>
 
         <Card.Body className='px-3 pb-2 pt-0'>
-          <Card.Title className='my-2   post__title' style={{ height: '40px' }}>
+          <Card.Title className='my-2   post__title'>
             <Link to={`/products/${_id}`}>{title} </Link>
           </Card.Title>
 
           <Row>
-            <Col
-              sm={6}
-              md={12}
-              lg={6}
-              className='pr-1 align-middle'
-              style={{ height: '52px' }}
-            >
+            <Col sm={6} md={12} lg={6} className='pr-1 align-middle'>
               <Card.Text className='mt-0'>
                 <div className='align-bottom  post__sub_title'>{location}</div>
               </Card.Text>

@@ -14,39 +14,65 @@ exports.createTX = asyncHandler(async (req, res) => {
     .select(['title', 'description', 'image', 'location', '_id'])
     .populate({
       path: 'user',
-      select: ['shipping', '_id'],
+      select: ['shipping', '_id', 'name'],
     })
 
   const sellerItem = await Product.findById(sellerItemId)
     .select(['title', 'description', 'image', 'location', '_id'])
     .populate({
       path: 'user',
-      select: ['shipping', '_id'],
+      select: ['shipping', '_id', 'name'],
     })
 
   const newTransaction = new Transaction()
 
-  newTransaction.buyerId = buyerItem.user._id
-  newTransaction.buyerItem = {
+  newTransaction.buyer.item = {
     title: buyerItem.title,
     description: buyerItem.description,
     image: buyerItem.image,
     location: buyerItem.location,
     _id: buyerItem._id,
   }
-  newTransaction.buyerAddress = buyerItem.user.shipping
+  newTransaction.buyer.user = {
+    _id: buyerItem.user._id,
+    name: buyerItem.user.name,
+  }
+  newTransaction.buyer.address = buyerItem.user.shipping
 
-  newTransaction.sellerId = sellerItem.user._id
-  newTransaction.sellerItem = {
+  newTransaction.seller.item = {
     title: sellerItem.title,
     description: sellerItem.description,
     image: sellerItem.image,
     location: sellerItem.location,
     _id: sellerItem._id,
   }
-  newTransaction.buyerAddress = sellerItem.user.shipping
+  newTransaction.seller.user = {
+    _id: sellerItem.user._id,
+    name: sellerItem.user.name,
+  }
+  newTransaction.seller.address = sellerItem.user.shipping
 
   await newTransaction.save()
 
+  
+
   res.status(201).json(newTransaction)
+})
+
+/**
+ * @Desc   Fetch all transactions
+ * @Route  GET /api/transactions/
+ * @Access Private
+ */
+exports.fetchTX = asyncHandler(async (req, res) => {
+  const { _id: userId } = req.user
+
+  const transactionList = await Transaction.find({
+    $or: [{ 'seller.user._id': userId }, { 'buyer.user._id': userId }],
+  })
+  if (!transactionList) {
+    throw new Error("You don't have any transaction yet.")
+  }
+
+  res.status(201).json(transactionList)
 })
